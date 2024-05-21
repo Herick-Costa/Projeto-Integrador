@@ -1,2 +1,2 @@
 # Projeto-Integrador
-Projeto Integrador para a faculdade Dom Bosco
+Projeto modelo para a faculdade Dom Bosco
