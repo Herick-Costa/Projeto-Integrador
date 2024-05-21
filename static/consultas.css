@@ -1,0 +1,248 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+nav {
+    background-color: #333;
+    width: 100%;
+}
+
+label {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    margin: 2px;
+    text-decoration: none;
+    font-size: 27px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+select {
+    font-weight: 400;
+    font-size: 25px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
+    width: 150px;
+    text-align: center;
+}
+
+option {
+    font-size: 18px;
+}
+
+.input {
+    font-weight: 380px;
+    font-size: 20px;
+    margin: 10px;
+    background-color: #ffffff;
+    height: 45px;
+    width: 300px;
+    text-align: center;
+    border: 1px solid rgb(51, 51, 51);
+    border-radius: 10px;
+    box-shadow: 3px 3px 2px #56ad59;
+}
+
+.input:focus {
+    color: #56ad59;
+    background-color: #ffffff;
+    outline-color: #ffffff;
+    box-shadow: -3px -3px 15px #56ad59;
+    transition: .2s;
+    transition-property: box-shadow;
+}
+
+h3 {
+    background-color: #56ad59;
+    color: rgb(0, 0, 0);
+    padding: 6px;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    width: 500px;
+}
+
+.flash-messages {
+    background-color: #ff0202;
+    color: rgb(0, 0, 0);
+    padding: 6px;
+    margin: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    width: 500px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+}
+
+nav a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    font-size: 10px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.search-bar {
+    width: 80%;
+    padding: 15px;
+    margin: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+.button {
+    padding: 0px;
+    height: 45px;
+    width: 300px;
+    text-align: center;
+    --color: #4CAF50;
+    background-color: #ffffff;
+    border-radius: .3em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .5s;
+    font-weight: 400;
+    font-size: 30px;
+    border: 1px solid;
+    font-family: inherit;
+    color: black;
+    z-index: 1;
+    text-decoration: none
+}
+
+.button::before,
+.button::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    background-color: var(--color);
+    transition: 0.7s ease;
+}
+
+.button::before {
+    top: -1em;
+    left: -1em;
+}
+
+.button::after {
+    left: calc(100% + 1em);
+    top: calc(100% + 1em);
+}
+
+.button:hover::before,
+.button:hover::after {
+    height: 600px;
+    width: 600px;
+}
+
+.button:hover {
+    color: rgb(255, 255, 255);
+}
+
+.button:active {
+    filter: brightness(.8);
+}
+
+
+.night-mode,
+.night-mode label {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.night-mode header,
+.night-mode nav,
+.night-mode footer {
+    background-color: #1e1e1e;
+}
+
+.night-mode input,
+.night-mode select,
+.night-mode button,
+.night-mode h3 {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #555555;
+}
+
+form {
+    width: 80%;
+    padding: 30px;
+    margin: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+}
