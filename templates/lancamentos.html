@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='lancamentos.css') }}">
+    <title>Controle de Vacinas - Lançamentos</title>
+    <script>
+
+        function toggleNightMode() {
+            document.body.classList.toggle('night-mode');
+            var currentMode = document.body.classList.contains('night-mode') ? 'night' : 'day';
+            localStorage.setItem('mode', currentMode);
+        }
+
+        window.onload = function () {
+            var savedMode = localStorage.getItem('mode');
+            if (savedMode === 'night') {
+                document.body.classList.add('night-mode');
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='Brasão_do_Paraná.svg') }}" width="100px" height="100px" alt="Logo"
+            style="float: left;">
+        <h1>Controle de Vacinas</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('consultas') }}">Consultas</a></li>
+        </ul>
+    </nav>
+
+    <button id="theme-toggle" onclick="toggleNightMode()"
+        style="float: right; background: none; border: none; cursor: pointer;">
+        <img src="{{ url_for('static', filename='tema.svg') }}" width="30px" height="30px" alt="Toggle Theme">
+    </button>
+
+    <main>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+            <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('lancamentos') }}" method="POST">
+            <h2>Registrar aplicação</h2>
+
+            <label for="cpf">CPF:</label>
+            <input placeholder="111.111.111-00" type="text" id="cpf" name="cpf">
+            <label for="vacina">Vacina:</label>
+            <select id="vacina" name="vacina">
+                <option value=""></option>
+                <option value="Hepatite B">Hepatite B</option>
+                <option value="Dupla Bacteriana">Dupla Bacteriana</option>
+                <option value="Febre Amarela">Febre Amarela</option>
+                <option value="Influenza">Influenza</option>
+                <option value="COVID-19">COVID-19</option>
+            </select>
+            <label for="codigo">Lote da vacina:</label>
+            <input type="text" id="lote" name="lote">
+
+            <label for="data">Data da aplicação:</label>
+            <input type="date" id="data" name="data">
+            <br><br>
+            <button class="button" type="submit">Enviar</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Controle de Vacinas</p>
+    </footer>
+</body>
+
+</html>

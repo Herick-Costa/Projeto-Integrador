@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='consultas.css')}}">
+    <title>Consultas - Controle de Vacinas</title>
+
+    <script>
+        function updatePlaceholder() {
+            var campo = document.getElementById('campo');
+            var valor = document.getElementById('valor');
+            if (campo.value == 'cpf') {
+                valor.placeholder = '111.111.111-00';
+            } else if (campo.value == 'nome') {
+                valor.placeholder = 'Nome Completo';
+            } else if (campo.value == 'telefone') {
+                valor.placeholder = '(00) 00000-0000';
+            }
+        }
+
+        function toggleNightMode() {
+            document.body.classList.toggle('night-mode');
+            var currentMode = document.body.classList.contains('night-mode') ? 'night' : 'day';
+            localStorage.setItem('mode', currentMode);
+        }
+
+        window.onload = function () {
+            var savedMode = localStorage.getItem('mode');
+            if (savedMode === 'night') {
+                document.body.classList.add('night-mode');
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='Brasão_do_Paraná.svg') }}" width="100px" height="100px" alt="Logo"
+            style="float: left;">
+        <h1>Controle de Vacinas</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('lancamentos') }}">Lançamentos</a></li>
+        </ul>
+    </nav>
+
+    <button id="theme-toggle" onclick="toggleNightMode()"
+        style="float: right; background: none; border: none; cursor: pointer;">
+        <img src="{{ url_for('static', filename='tema.svg') }}" width="30px" height="30px" alt="Toggle Theme">
+    </button>
+
+    <main>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+            <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('consultas') }}" method="POST">
+            <label for="campo">Escolha o campo de consulta:</label><br><br><br>
+            <select id="campo" name="campo" onchange="updatePlaceholder()">
+                <option value="cpf">CPF</option>
+                <option value="nome">Nome</option>
+                <option value="telefone">Telefone</option>
+            </select><br><br>
+            <input class="input" type="text" id="valor" name="valor" placeholder="111.111.111-00"><br><br>
+            <button class="button" type="submit">Consultar</button>
+        </form>
+
+        {% if cpf %}
+        <div class="paciente-info">
+            <h2>Dados do Paciente</h2>
+            <h3>Nome: {{ nome }}</h3>
+            <h3>CPF: {{ cpf }}</h3>
+            <h3>Telefone: {{ telefone }}</h3>
+            <h3>Endereço: {{ endereco }}</h3>
+            <h2>Vacinas</h2>
+            <h3>Hepatite B: {{ hepatite_b }}</h3>
+            <h3>Dupla Bacteriana: {{ dupla_bacteriana }}</h3>
+            <h3>Febre Amarela: {{ febre_amarela }}</h3>
+            <h3>Influenza: {{ influenza }}</h3>
+            <h3>COVID-19: {{ covid_19 }}</h3>
+        </div>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Controle de Vacinas</p>
+    </footer>
+</body>
+
+</html>
